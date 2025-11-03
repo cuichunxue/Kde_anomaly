@@ -48,6 +48,9 @@ env/
 *.png
 *.jpg
 *.pdf
+*.html
+output_*.html
+anomaly_dashboard.html
 
 # OS
 .DS_Store

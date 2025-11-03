@@ -113,7 +113,67 @@ python demo.py
 
 # メインスクリプトの使用例を実行
 python kde_anomaly_detector.py
+
+# Plotly可視化デモを実行
+python demo_plotly.py
 ```
+
+## Plotly可視化機能
+
+異常度の推移を対話的に可視化できます。
+
+### 基本的な時系列プロット
+
+```python
+from plotly_visualizer import plot_anomaly_score_timeline
+
+fig = plot_anomaly_score_timeline(
+    timestamps=df['timestamp'],
+    scores=anomaly_scores,
+    labels=labels,
+    threshold=detector.threshold_,
+    output_file='anomaly_timeline.html'
+)
+```
+
+### 特徴量を含む詳細プロット
+
+```python
+from plotly_visualizer import plot_anomaly_score_with_features
+
+fig = plot_anomaly_score_with_features(
+    timestamps=df['timestamp'],
+    scores=scores,
+    features_df=df[['temp', 'pressure', 'vibration']],
+    labels=labels,
+    threshold=detector.threshold_
+)
+```
+
+### 包括的なダッシュボード
+
+```python
+from plotly_visualizer import create_anomaly_dashboard
+
+create_anomaly_dashboard(
+    timestamps=df['timestamp'],
+    scores=scores,
+    features_df=df[['temp', 'pressure', 'vibration']],
+    labels=labels,
+    threshold=detector.threshold_,
+    output_file='dashboard.html'
+)
+```
+
+### 可視化機能一覧
+
+- **plot_anomaly_score_timeline()**: 異常度スコアの時系列プロット
+- **plot_anomaly_score_with_features()**: 異常度と特徴量を同時表示
+- **plot_anomaly_heatmap()**: 時系列ヒートマップ
+- **plot_anomaly_distribution()**: 異常度スコアの分布
+- **create_anomaly_dashboard()**: 包括的なダッシュボード
+
+すべての可視化は対話的で、ズーム・パン・ホバー情報表示が可能です。
 
 ## クラス詳細
 
